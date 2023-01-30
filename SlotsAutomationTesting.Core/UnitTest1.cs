@@ -9,6 +9,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using SlotsAutomationTesting.Core.PageObject;
 
 namespace SlotsAutomationTesting.Core
 {
@@ -24,18 +25,26 @@ namespace SlotsAutomationTesting.Core
             _webDriver = new FirefoxDriver();
             _webDriver.Manage().Window.Maximize();
             _webDriver.Navigate().GoToUrl(Constance.StageUrl);
+            var stageLogIn = new StageLogInPageObject(_webDriver);
+            stageLogIn.SignIn();
+            var launchgame = new StagingMainPageObject(_webDriver);
+            launchgame.Launch(GameMode.Real, "big city bank");
             
         }
 
         [Test]
-        public void Test1()
+        public void LaunchGame()
         {
-            Assert.Pass();
+          var launchgame = new StagingMainPageObject(_webDriver);
+          string actualGameframeValue = launchgame.GameFrameIsVisible();
+          Assert.AreEqual(Constance.launchId,actualGameframeValue);
+            
         }
 
         [TearDown]
         public void TearDown()
         {
+            _webDriver.Quit();
         }
     }
 }

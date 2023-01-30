@@ -3,6 +3,6 @@
     public enum GameMode
     {
         Real,
-        fun
+        Fun
     }
 }
