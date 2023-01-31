@@ -28,19 +28,35 @@ namespace SlotsAutomationTesting.Core
             var stageLogIn = new StageLogInPageObject(_webDriver);
             stageLogIn.SignIn();
             var launchgame = new StagingMainPageObject(_webDriver);
-            launchgame.Launch(GameMode.Real, "big city bank");
+            launchgame.Launch();
             
+            
+        }
+
+        // [Test]
+        //  public void LaunchGame()
+        // {
+        //   var launchgame = new StagingMainPageObject(_webDriver);
+        //   string actualGameframeValue = launchgame.GameFrameIsVisible();
+        //   Assert.AreEqual(Constance.launchId,actualGameframeValue);
+        //     
+        // }
+
+        [Test]
+        public void GameOpen()
+        {
+            var gameOpen = new GamePageObject(_webDriver);
+            gameOpen.ListenGameOpen();
+            var actualResult = gameOpen.GetGameId();
+            
+
         }
 
         [Test]
-        public void LaunchGame()
+        public void DoSpin()
         {
-          var launchgame = new StagingMainPageObject(_webDriver);
-          string actualGameframeValue = launchgame.GameFrameIsVisible();
-          Assert.AreEqual(Constance.launchId,actualGameframeValue);
             
         }
-
         [TearDown]
         public void TearDown()
         {

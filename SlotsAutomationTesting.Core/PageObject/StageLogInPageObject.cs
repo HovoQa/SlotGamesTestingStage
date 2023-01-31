@@ -25,13 +25,6 @@ namespace SlotsAutomationTesting.Core.PageObject
             _webDriver.FindElement(_signInBtn).Click();
             return new StagingMainPageObject(_webDriver);
         }
-
-        public string UpdateBalanceBtnIsVisible()
-        {
-            WaitHelper.WaitElement(_webDriver,_updateBalanceBtn,10);
-            string updateBalanceValue = _webDriver.FindElement(_updateBalanceBtn).Text; 
-            return updateBalanceValue;
-        }
-
+        
     }
 }
